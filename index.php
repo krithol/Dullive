@@ -19,9 +19,38 @@
 		<div class="content">
 		<p> </p>
 		<p>Hei, tekst tekst!</p>
+		<?php
+			if(isset($_POST["name"])){
+			$name = $_POST["name"];
+			$bdate = $_POST["bdate"];
+			$age = getage($bdate);
+			if (strlen($name) > 0){
+			echo "Du heter " . $name . " og du er " . $age . " &aringr gammel";
+			}	
+		}
+		else {
+			echo "Velkommen!";
+			$name ="";
+		}
+
+
+		function getAge($bdate) {
+			return floor((time() - strtotime($bdate))/(31536000));
+		}
+
+		?>
+
+
 		<p>Test 2</p>
 
 		<img id="bilde" src="DSC_0022.jpg" style="width: 600px">
+		<form action ="" method="post">
+			<input type="text" name="name" value="<?php echo $name; ?>"><br>
+			<label>Fødselsdato: </label>
+			<input type="date" name="bdate">
+			<br>
+			<input type="submit" value="Go!">
+		</form>
 		<p>Bildetekst mangler</p>
 		</div>
 	</body>
